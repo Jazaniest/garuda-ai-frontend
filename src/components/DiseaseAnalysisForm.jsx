@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stethoscope, UploadCloud, Loader2 } from 'lucide-react';
+import { Stethoscope, UploadCloud, Loader2, Image as ImageIcon, CheckCircle } from 'lucide-react';
 import { analyzeUnliDev } from '../api/analysisApi';
 
 const DiseaseAnalysisForm = () => {
@@ -41,52 +41,68 @@ const DiseaseAnalysisForm = () => {
   };
 
   return (
-    <div className="flex flex-col h-full p-6 overflow-y-auto">
-      <div className="p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <div className="flex items-center mb-4">
-          <Stethoscope className="w-8 h-8 mr-3 text-green-500" />
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">Analisis Penyakit Tanaman</h2>
-        </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Unggah Foto Tanaman</label>
-            <div className="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md dark:border-gray-600">
-              <div className="space-y-1 text-center">
-                {preview ? (
-                  <img src={preview} alt="Preview" className="w-auto h-40 mx-auto rounded-md" />
-                ) : (
-                  <UploadCloud className="w-12 h-12 mx-auto text-gray-400" />
-                )}
-                <div className="flex text-sm text-gray-600 dark:text-gray-400">
-                  <label htmlFor="file-upload" className="relative font-medium text-blue-600 bg-white rounded-md cursor-pointer dark:bg-gray-800 hover:text-blue-500 focus-within:outline-none">
-                    <span>Pilih file</span>
-                    <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handleFileChange} accept="image/*" />
-                  </label>
-                  <p className="pl-1">atau seret dan lepas</p>
-                </div>
-                <p className="text-xs text-gray-500 dark:text-gray-500">{file ? file.name : 'PNG, JPG, GIF hingga 10MB'}</p>
-              </div>
+    <div className="h-full overflow-y-auto bg-slate-100 dark:bg-slate-900">
+      <div className="max-w-4xl p-4 mx-auto sm:p-6 lg:p-8">
+        <div className="p-6 bg-white border shadow-sm sm:p-8 dark:bg-slate-800 rounded-2xl border-slate-200 dark:border-slate-700">
+          <div className="flex items-center mb-6">
+            <div className="p-3 mr-4 bg-teal-100 rounded-full dark:bg-teal-900/40">
+              <Stethoscope className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold sm:text-2xl text-slate-900 dark:text-slate-100">Analisis Penyakit Tanaman</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Unggah foto untuk deteksi dini penyakit.</p>
             </div>
           </div>
-          <button type="submit" disabled={isLoading || !file} className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-green-300">
-            {isLoading ? <Loader2 className="animate-spin" /> : 'Analisis Foto'}
-          </button>
-        </form>
-      </div>
-
-      {/* Result prompt */}
-        {result && (
-            <div className="p-6 mt-6 bg-white rounded-lg shadow-md dark:bg-gray-800 animate-fade-in-up">
-            <h3 className="mb-4 text-xl font-bold text-gray-800 dark:text-gray-200">Hasil Analisis</h3>
-            {result.error ? (
-                <p className="text-red-500">{result.error}</p>
-            ) : (
-                <div className="space-y-3 text-gray-700 whitespace-pre-wrap dark:text-gray-300">
-                {result.analysis || JSON.stringify(result, null, 2)}
-                </div>
-            )}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block mb-2 text-sm font-medium text-slate-700 dark:text-slate-300">Foto Tanaman</label>
+              <div className="flex flex-col items-center justify-center w-full p-6 mt-1 border-2 border-dashed rounded-lg bg-slate-50 dark:bg-slate-700/50 border-slate-300 dark:border-slate-600">
+                {!preview ? (
+                  <div className="text-center">
+                    <UploadCloud className="w-12 h-12 mx-auto text-slate-400" />
+                    <label htmlFor="file-upload" className="relative mt-4 text-sm font-semibold text-indigo-600 cursor-pointer dark:text-indigo-400 hover:text-indigo-500">
+                      <span>Pilih file untuk diunggah</span>
+                      <input id="file-upload" type="file" className="sr-only" onChange={handleFileChange} accept="image/*" />
+                    </label>
+                    <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">atau seret dan lepas</p>
+                  </div>
+                ) : (
+                  <div className="text-center">
+                    <img src={preview} alt="Preview" className="mx-auto rounded-lg shadow-md max-h-48" />
+                    <div className="flex items-center justify-center mt-4 text-sm text-green-600 dark:text-green-400">
+                      <CheckCircle size={16} className="mr-2" />
+                      <span className="font-medium">{file.name}</span>
+                    </div>
+                     <label htmlFor="file-upload" className="relative mt-2 text-sm font-semibold text-indigo-600 cursor-pointer dark:text-indigo-400 hover:text-indigo-500">
+                      <span>Ganti file</span>
+                      <input id="file-upload" type="file" className="sr-only" onChange={handleFileChange} accept="image/*" />
+                    </label>
+                  </div>
+                )}
+              </div>
             </div>
+            <button type="submit" disabled={isLoading || !file} className="w-full flex justify-center py-3 px-4 rounded-lg font-semibold text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-60 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02]">
+              {isLoading ? <Loader2 className="animate-spin" /> : 'Analisis Foto'}
+            </button>
+          </form>
+        </div>
+        
+        {result && (
+          <div className="p-6 mt-8 bg-white border shadow-sm sm:p-8 dark:bg-slate-800 rounded-2xl border-slate-200 dark:border-slate-700 animate-fade-in-up">
+            <h3 className="mb-6 text-xl font-bold sm:text-2xl text-slate-900 dark:text-slate-100">Hasil Analisis</h3>
+            {result.error ? <p className="text-center text-red-500">{result.error}</p> : (
+              <div className="space-y-4">
+                <div className="font-medium text-slate-800 dark:text-slate-200">Penyakit Terdeteksi: <span className="text-lg font-bold text-rose-500">{result.penyakit}</span></div>
+                <div className="font-medium text-slate-800 dark:text-slate-200">Tingkat Keyakinan: <span className="font-semibold">{result.keyakinan}</span></div>
+                <div>
+                  <h4 className="mt-4 font-semibold text-slate-800 dark:text-slate-200">Rekomendasi Penanganan:</h4>
+                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{result.saran}</p>
+                </div>
+              </div>
+            )}
+          </div>
         )}
+      </div>
     </div>
   );
 };

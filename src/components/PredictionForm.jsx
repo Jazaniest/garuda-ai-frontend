@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LineChart, Loader2 } from 'lucide-react';
+import { LineChart, Loader2, Leaf, MapPin, DollarSign, ThumbsUp, Store } from 'lucide-react';
 import { analyzeLunos } from '../api/analysisApi';
 
 const PredictionForm = () => {
@@ -29,45 +29,83 @@ const PredictionForm = () => {
     }
   };
 
-  return (
-    <div className="flex flex-col h-full p-6 overflow-y-auto">
-      <div className="p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <div className="flex items-center mb-4">
-          <LineChart className="w-8 h-8 mr-3 text-blue-500" />
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">Prediksi Komoditas</h2>
-        </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Komoditas</label>
-            <input type="text" name="komoditas" onChange={handleChange} required className="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500" placeholder="Contoh: Cabai Rawit" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lokasi (Desa, Kecamatan, Kabupaten)</label>
-            <div className="grid grid-cols-1 gap-4 mt-1 md:grid-cols-3">
-              <input type="text" name="desa" onChange={handleChange} required className="border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500" placeholder="Desa" />
-              <input type="text" name="kecamatan" onChange={handleChange} required className="border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500" placeholder="Kecamatan" />
-              <input type="text" name="kabupaten" onChange={handleChange} required className="border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500" placeholder="Kabupaten" />
-            </div>
-          </div>
-          <button type="submit" disabled={isLoading} className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-blue-300">
-            {isLoading ? <Loader2 className="animate-spin" /> : 'Dapatkan Prediksi'}
-          </button>
-        </form>
+  const InputWithIcon = ({ icon, ...props }) => (
+    <div className="relative">
+      <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400">
+        {icon}
       </div>
+      <input 
+        {...props} 
+        className="block w-full py-3 pl-12 pr-4 transition-all border rounded-lg shadow-sm bg-slate-50 dark:bg-slate-700/50 border-slate-200 dark:border-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+      />
+    </div>
+  );
 
-      {/* Result prompt */}
-      {result && (
-        <div className="p-6 mt-6 bg-white rounded-lg shadow-md dark:bg-gray-800 animate-fade-in-up">
-          <h3 className="mb-4 text-xl font-bold text-gray-800 dark:text-gray-200">Hasil Prediksi</h3>
-          {result.error ? (
-            <p className="text-red-500">{result.error}</p>
-          ) : (
-            <div className="space-y-3 text-gray-700 whitespace-pre-wrap dark:text-gray-300">
-              {result.result || JSON.stringify(result, null, 2)}
+  return (
+    <div className="h-full overflow-y-auto bg-slate-100 dark:bg-slate-900">
+      <div className="max-w-4xl p-4 mx-auto sm:p-6 lg:p-8">
+        <div className="p-6 bg-white border shadow-sm sm:p-8 dark:bg-slate-800 rounded-2xl border-slate-200 dark:border-slate-700">
+          <div className="flex items-center mb-6">
+            <div className="p-3 mr-4 bg-indigo-100 rounded-full dark:bg-indigo-900/40">
+              <LineChart className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
             </div>
-          )}
+            <div>
+              <h2 className="text-xl font-bold sm:text-2xl text-slate-900 dark:text-slate-100">Prediksi Komoditas</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Dapatkan analisis agrikultur berbasis AI.</p>
+            </div>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block mb-2 text-sm font-medium text-slate-700 dark:text-slate-300">Komoditas</label>
+              <InputWithIcon icon={<Leaf size={18} />} type="text" name="komoditas" onChange={handleChange} required placeholder="Contoh: Bawang Merah" />
+            </div>
+            <div>
+              <label className="block mb-2 text-sm font-medium text-slate-700 dark:text-slate-300">Lokasi Tanam</label>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <InputWithIcon icon={<MapPin size={18} />} type="text" name="desa" onChange={handleChange} required placeholder="Desa" />
+                <InputWithIcon icon={<MapPin size={18} />} type="text" name="kecamatan" onChange={handleChange} required placeholder="Kecamatan" />
+                <InputWithIcon icon={<MapPin size={18} />} type="text" name="kabupaten" onChange={handleChange} required placeholder="Kabupaten" />
+              </div>
+            </div>
+
+            <button type="submit" disabled={isLoading} className="w-full flex justify-center py-3 px-4 rounded-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02]">
+              {isLoading ? <Loader2 className="animate-spin" /> : 'Dapatkan Prediksi'}
+            </button>
+          </form>
         </div>
-      )}
+
+        {result && (
+          <div className="p-6 mt-8 bg-white border shadow-sm sm:p-8 dark:bg-slate-800 rounded-2xl border-slate-200 dark:border-slate-700 animate-fade-in-up">
+            <h3 className="mb-6 text-xl font-bold sm:text-2xl text-slate-900 dark:text-slate-100">Hasil Analisis</h3>
+            {result.error ? <p className="text-center text-red-500">{result.error}</p> : (
+              <div className="space-y-6">
+                <div className="flex items-start p-4 rounded-lg bg-slate-50 dark:bg-slate-700/50">
+                  <DollarSign className="flex-shrink-0 w-6 h-6 mt-1 mr-4 text-green-500" />
+                  <div>
+                    <h4 className="font-semibold text-slate-800 dark:text-slate-200">Prediksi Harga</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">{result.harga}</p>
+                  </div>
+                </div>
+                <div className="flex items-start p-4 rounded-lg bg-slate-50 dark:bg-slate-700/50">
+                  <ThumbsUp className="flex-shrink-0 w-6 h-6 mt-1 mr-4 text-yellow-500" />
+                  <div>
+                    <h4 className="font-semibold text-slate-800 dark:text-slate-200">Saran Tanam</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">{result.saran}</p>
+                  </div>
+                </div>
+                <div className="flex items-start p-4 rounded-lg bg-slate-50 dark:bg-slate-700/50">
+                  <Store className="flex-shrink-0 w-6 h-6 mt-1 mr-4 text-sky-500" />
+                  <div>
+                    <h4 className="font-semibold text-slate-800 dark:text-slate-200">Potensi Pasar</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">{result.pasar}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

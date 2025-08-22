@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessageSquare, Plus, Settings, LogOut } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 
 const Sidebar = ({ onNewChat, chatSessions, activeChatId, onSelectChat }) => {
   const { currentUser, logout } = useAuth();

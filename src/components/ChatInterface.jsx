@@ -35,17 +35,11 @@ const ChatInterface = ({ activeChat, setChatSessions }) => {
   };
   
   return (
-    <>
-      <Header title="Pertanyaan Seputar Pertanian" />
-      <main className="flex flex-col flex-1 overflow-hidden">
-        <MessageList messages={activeChat.messages} />
-        <ChatInput
-          onSend={handleSendMessage}
-          placeholder="Tanyakan apa saja..."
-          activeChat={activeChat}
-        />
-      </main>
-    </>
+    <div className="flex flex-col h-full bg-slate-100 dark:bg-slate-900">
+      <Header title="Tanya Jawab AI" />
+      <MessageList messages={activeChat.messages} />
+      <ChatInput onSend={handleSendMessage} placeholder="Ketik pertanyaan Anda..." />
+    </div>
   );
 };
 

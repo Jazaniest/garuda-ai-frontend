@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import { loginUser, registerUser, logoutUser, refreshToken } from '../api/userApi';
+import { loginUser, registerUser, logoutUser, refreshToken } from '../api/userAPI';
 import { AuthContext } from '../hooks/useAuth';
 
 export const AuthProvider = ({ children }) => {
