@@ -1,6 +1,6 @@
 # TaniAI
 
-TaniAI adalah sebuah platform web interaktif yang dirancang untuk membantu para petani di Indonesia. Aplikasi ini menyediakan fitur prediksi komoditas, analisis penyakit tanaman berbasis foto, dan sesi tanya jawab langsung dengan AI untuk memberikan dukungan modern bagi sektor pertanian.
+TaniAI adalah sebuah platform web interaktif yang dirancang untuk membantu 'memerdekakan' para petani di Indonesia. Aplikasi ini menyediakan fitur prediksi komoditas, analisis penyakit tanaman berbasis foto, dan sesi tanya jawab langsung dengan AI untuk memberikan dukungan modern bagi sektor pertanian.
 
 
 
@@ -50,7 +50,7 @@ Berikut adalah cara untuk menjalankan proyek ini di lingkungan pengembangan loka
     ```
 
 3.  **Jalankan Backend**
-    Pastikan kedua server backend Anda (untuk autentikasi di port 4000 dan analisis foto di port 3000) sudah berjalan.
+    Pastikan server backend Anda sudah berjalan.
 
 4.  **Jalankan server pengembangan frontend:**
     ```bash
