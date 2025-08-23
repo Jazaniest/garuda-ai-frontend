@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
       return true;
     } catch (error) {
       console.error("Registrasi gagal:", error.response?.data?.message || error.message);
-      alert(error.response?.data?.message || "Registrasi Gagal!");
+      alert(error.response?.data?.message || "Registrasi Gagal: ", error.response?.data?.message || error.message);
       return false;
     }
   }, []);
