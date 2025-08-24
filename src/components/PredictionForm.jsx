@@ -161,19 +161,19 @@ const PredictionForm = () => {
                       className="text-sm leading-relaxed text-white sm:text-base"
                       components={{
                         //eslint-disable-next-line
-                        h1: ({node, ...props}) => <h1 className="mb-3 text-lg font-bold sm:text-xl" {...props} />,
+                        h1: ({node, ...props}) => <h1 className="mb-3 text-lg font-bold text-white sm:text-xl" {...props} />,
                         //eslint-disable-next-line
-                        h2: ({node, ...props}) => <h2 className="mb-2 text-base font-semibold sm:text-lg" {...props} />,
+                        h2: ({node, ...props}) => <h2 className="mb-2 text-base font-semibold text-white sm:text-lg" {...props} />,
                         //eslint-disable-next-line
-                        h3: ({node, ...props}) => <h3 className="mb-2 text-sm font-medium sm:text-base" {...props} />,
+                        h3: ({node, ...props}) => <h3 className="mb-2 text-sm font-medium text-white sm:text-base" {...props} />,
                         //eslint-disable-next-line
-                        p: ({node, ...props}) => <p className="mb-3 text-sm sm:text-base" {...props} />,
+                        p: ({node, ...props}) => <p className="mb-3 text-sm text-white sm:text-base" {...props} />,
                         //eslint-disable-next-line
-                        ul: ({node, ...props}) => <ul className="mb-3 ml-4 space-y-1 list-disc" {...props} />,
+                        ul: ({node, ...props}) => <ul className="mb-3 ml-4 space-y-1 text-white list-disc" {...props} />,
                         //eslint-disable-next-line
-                        ol: ({node, ...props}) => <ol className="mb-3 ml-4 space-y-1 list-decimal" {...props} />,
+                        ol: ({node, ...props}) => <ol className="mb-3 ml-4 space-y-1 text-white list-decimal" {...props} />,
                         //eslint-disable-next-line
-                        li: ({node, ...props}) => <li className="text-sm sm:text-base" {...props} />,
+                        li: ({node, ...props}) => <li className="text-sm text-white sm:text-base" {...props} />,
                       }}
                     >
                       {result.result}
