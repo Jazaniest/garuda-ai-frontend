@@ -155,7 +155,7 @@ const PredictionForm = () => {
               </div>
             ) : (
               <div className="space-y-4 sm:space-y-6">
-                <div className="p-4 rounded-lg sm:p-6 bg-slate-50 dark:bg-slate-700/50">
+                <div className="p-4 text-white rounded-lg sm:p-6 bg-slate-50 dark:bg-slate-700/50">
                   <div className="prose-sm prose sm:prose max-w-none dark:prose-invert">
                     <ReactMarkdown 
                       className="text-sm leading-relaxed text-white sm:text-base"
