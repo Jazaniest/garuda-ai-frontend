@@ -25,9 +25,9 @@ export const AuthProvider = ({ children }) => {
 
   const login = useCallback(async (email, password) => {
     try {
-      await loginUser(email, password);
-      const response = await getMe();
-      setCurrentUser(response.data);
+      const response = await loginUser(email, password);
+      setCurrentUser(response.data.user || response.data);
+      
       return true;
     } catch (error) {
       console.error("Login gagal:", error.response?.data?.message || error.message);
