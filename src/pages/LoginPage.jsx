@@ -8,14 +8,11 @@ const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  // 1. Jadikan fungsi ini async
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // 2. Tunggu (await) sampai fungsi login benar-benar selesai
     const success = await login(email, password);
-    // 3. Cek hasilnya setelah selesai
     if (success) {
-      navigate('/dashboard'); // Arahkan ke dashboard jika login berhasil
+      navigate('/dashboard');
     }
   };
 

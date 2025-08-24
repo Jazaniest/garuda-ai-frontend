@@ -40,12 +40,12 @@ const ChatDashboard = () => {
     setChatSessions(prev => [newChat, ...prev]);
     setActiveChatId(newChat.id);
     setIsModalOpen(false);
-    setIsSidebarOpen(false); // Close sidebar on mobile after selection
+    setIsSidebarOpen(false);
   };
 
   const handleSelectChat = (chatId) => {
     setActiveChatId(chatId);
-    setIsSidebarOpen(false); // Close sidebar on mobile after selection
+    setIsSidebarOpen(false);
   };
 
   const activeChat = chatSessions.find(chat => chat.id === activeChatId);

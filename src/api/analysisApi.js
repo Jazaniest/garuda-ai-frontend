@@ -22,10 +22,11 @@ export const analyzeLunos = async (prompt) => {
  */
 export const analyzeUnliDev = async (file) => {
   const formData = new FormData();
-  formData.append('image', file); 
+  formData.append('file', file); 
+  formData.append('prompt', ""); 
 
   try {
-    const response = await api.post('/unli-dev/analyze', formData, {
+    const response = await api.post('/unli-dev/analyze-image', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

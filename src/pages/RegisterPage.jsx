@@ -14,7 +14,7 @@ const RegisterPage = () => {
     const success = await register(name, email, password);
     if (success) {
       alert('Registrasi berhasil! Silakan login dengan akun Anda.');
-      navigate('/login'); // Arahkan ke halaman login
+      navigate('/login');
     }
   };
 

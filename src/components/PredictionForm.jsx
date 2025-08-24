@@ -3,7 +3,6 @@ import { LineChart, Loader2, Leaf, MapPin, DollarSign, ThumbsUp, Store } from 'l
 import { analyzeLunos } from '../api/analysisApi';
 import ReactMarkdown from "react-markdown";
 
-// Input component with responsive design
 const InputWithIcon = ({ icon, value, ...props }) => (
   <div className="relative">
     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none sm:pl-4 text-slate-400">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Stethoscope, UploadCloud, Loader2, Image as ImageIcon, CheckCircle } from 'lucide-react';
 import { analyzeUnliDev } from '../api/analysisApi';
+import ReactMarkdown from 'react-markdown'
 
 const DiseaseAnalysisForm = () => {
   const [file, setFile] = useState(null);
@@ -31,6 +32,7 @@ const DiseaseAnalysisForm = () => {
 
     try {
       const apiResult = await analyzeUnliDev(file);
+      console.log(apiResult)
       setResult(apiResult);
       //eslint-disable-next-line
     } catch (error) {
@@ -108,19 +110,6 @@ const DiseaseAnalysisForm = () => {
                         {file.name}
                       </span>
                     </div>
-                    <label 
-                      htmlFor="file-upload-change" 
-                      className="relative mt-2 text-sm font-semibold text-indigo-600 transition-colors cursor-pointer dark:text-indigo-400 hover:text-indigo-500"
-                    >
-                      <span>Ganti file</span>
-                      <input 
-                        id="file-upload-change" 
-                        type="file" 
-                        className="sr-only" 
-                        onChange={handleFileChange} 
-                        accept="image/*" 
-                      />
-                    </label>
                   </div>
                 )}
               </div>
@@ -157,36 +146,13 @@ const DiseaseAnalysisForm = () => {
             ) : (
               <div className="space-y-4 sm:space-y-6">
                 {/* Disease Info */}
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
-                  <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-700/50">
-                    <h4 className="mb-1 text-sm font-medium text-slate-600 dark:text-slate-400">
-                      Penyakit Terdeteksi
-                    </h4>
-                    <p className="text-lg font-bold sm:text-xl text-rose-500">
-                      {result.penyakit}
-                    </p>
-                  </div>
-                  <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-700/50">
-                    <h4 className="mb-1 text-sm font-medium text-slate-600 dark:text-slate-400">
-                      Tingkat Keyakinan
-                    </h4>
-                    <p className="text-lg font-semibold sm:text-xl text-slate-800 dark:text-slate-200">
-                      {result.keyakinan}
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="w-full p-4 rounded-lg bg-slate-50 dark:bg-slate-700/50">
+                    <p className="text-lg text-white break-words sm:text-xl">
+                      <ReactMarkdown>{result.result}</ReactMarkdown>
                     </p>
                   </div>
                 </div>
-
-                {/* Recommendations */}
-                {result.saran && (
-                  <div className="p-4 rounded-lg sm:p-6 bg-blue-50 dark:bg-blue-900/20">
-                    <h4 className="mb-3 text-base font-semibold text-blue-800 sm:text-lg dark:text-blue-200">
-                      Rekomendasi Penanganan
-                    </h4>
-                    <p className="text-sm leading-relaxed text-blue-700 sm:text-base dark:text-blue-300">
-                      {result.saran}
-                    </p>
-                  </div>
-                )}
               </div>
             )}
           </div>

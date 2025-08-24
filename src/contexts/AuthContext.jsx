@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import { loginUser, registerUser, logoutUser, refreshToken } from '../api/userAPI';
+import { loginUser, registerUser, logoutUser, refreshToken, getMe } from '../api/userAPI';
 import { AuthContext } from '../hooks/useAuth';
 
 export const AuthProvider = ({ children }) => {
@@ -9,8 +9,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const response = await refreshToken();
-        setCurrentUser(response.data.name);
+        await refreshToken();
+        const response = await getMe();
+        setCurrentUser(response.data);
         //eslint-disable-next-line
       } catch (error) {
         console.log("Tidak ada sesi aktif atau token refresh gagal.");
@@ -24,8 +25,9 @@ export const AuthProvider = ({ children }) => {
 
   const login = useCallback(async (email, password) => {
     try {
-      const response = await loginUser(email, password);
-      setCurrentUser(response.data.name);
+      await loginUser(email, password);
+      const response = await getMe();
+      setCurrentUser(response.data);
       return true;
     } catch (error) {
       console.error("Login gagal:", error.response?.data?.message || error.message);

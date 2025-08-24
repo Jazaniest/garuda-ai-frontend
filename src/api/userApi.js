@@ -5,7 +5,7 @@ export const registerUser = async (name, email, password) => {
 };
 
 export const loginUser = async (email, password) => {
-  return api.post('/auth/login', { email, password });
+  return api.post('/auth/login', {email, password });
 };
 
 export const logoutUser = async () => {
@@ -14,4 +14,12 @@ export const logoutUser = async () => {
 
 export const refreshToken = async () => {
   return api.post('/auth/refresh');
+};
+
+/**
+ * Mengambil profil pengguna.
+ * @returns {Promise<any>}
+ */
+export const getMe = async () => {
+  return api.get('/auth/me');
 };

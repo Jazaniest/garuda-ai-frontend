@@ -1,5 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Bot, User } from 'lucide-react';
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm';
 
 const MessageList = ({ messages }) => {
   const endOfMessagesRef = useRef(null);
@@ -21,9 +23,9 @@ const MessageList = ({ messages }) => {
               ? 'bg-indigo-600 text-white rounded-br-none shadow-md'
               : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-bl-none shadow-md border border-slate-200 dark:border-slate-700'
           }`}>
-            <p className="text-xs leading-relaxed break-words whitespace-pre-wrap sm:text-sm">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {msg.text}
-            </p>
+            </ReactMarkdown>
           </div>
           {msg.sender === 'user' && (
             <div className="flex items-center justify-center flex-shrink-0 rounded-full w-7 h-7 sm:w-8 sm:h-8 bg-slate-200 dark:bg-slate-700 text-slate-500">
