@@ -79,7 +79,8 @@ const PredictionForm = () => {
                 value={formData.komoditas}
                 onChange={handleChange} 
                 required 
-                placeholder="Contoh: Bawang Merah" 
+                placeholder="Contoh: Bawang Merah"
+                className="text-white placeholder-gray-400"
               />
             </div>
 
@@ -96,7 +97,8 @@ const PredictionForm = () => {
                   value={formData.desa}
                   onChange={handleChange} 
                   required 
-                  placeholder="Desa" 
+                  placeholder="Desa"
+                  className="text-white placeholder-gray-400" 
                 />
                 <InputWithIcon 
                   icon={<MapPin size={16} className="sm:w-[18px] sm:h-[18px]" />} 
@@ -105,7 +107,8 @@ const PredictionForm = () => {
                   value={formData.kecamatan}
                   onChange={handleChange} 
                   required 
-                  placeholder="Kecamatan" 
+                  placeholder="Kecamatan"
+                  className="text-white placeholder-gray-400"
                 />
                 <div className="sm:col-span-2 lg:col-span-1">
                   <InputWithIcon 
@@ -115,7 +118,8 @@ const PredictionForm = () => {
                     value={formData.kabupaten}
                     onChange={handleChange} 
                     required 
-                    placeholder="Kabupaten" 
+                    placeholder="Kabupaten"
+                    className="text-white placeholder-gray-400"
                   />
                 </div>
               </div>
