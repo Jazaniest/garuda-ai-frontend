@@ -11,7 +11,7 @@ const InputWithIcon = ({ icon, value, ...props }) => (
     <input 
       {...props}
       value={value}
-      className="block w-full py-2.5 sm:py-3 pl-10 sm:pl-12 pr-3 sm:pr-4 text-sm sm:text-base transition-all border rounded-lg shadow-sm bg-slate-50 dark:bg-slate-700/50 border-slate-200 dark:border-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+      className="block w-full py-2.5 sm:py-3 pl-10 sm:pl-12 pr-3 sm:pr-4 text-sm text-white sm:text-base transition-all border rounded-lg shadow-sm bg-slate-50 dark:bg-slate-700/50 border-slate-200 dark:border-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
     />
   </div>
 );
